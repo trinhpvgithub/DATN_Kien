@@ -38,6 +38,10 @@
             <Setter Property="Padding" Value="0 0 0 1"/>
             <Setter Property="Foreground" Value="Black"/>
          </Style>
+         <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5 5 5 0"/>
+            <Setter Property="Height" Value="25"/>
+         </Style>
       </ResourceDictionary>
    </Window.Resources>
    <Grid>
@@ -54,15 +58,33 @@
             <RowDefinition Height="auto"/>
          </Grid.RowDefinitions>
          <GroupBox Header="Kiểu rải">
-            <StackPanel Orientation="Horizontal">
-               <RadioButton Content="Đối xứng"
-                            IsChecked="True"/>
-               <RadioButton Content="Chu vi" 
-                            Margin=" 30 0 0 0"/>
-            </StackPanel>
+            <Grid>
+               <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+               </Grid.RowDefinitions>
+               <StackPanel Orientation="Horizontal"
+                           Margin="5">
+                  <RadioButton Content="Đối xứng"
+                            IsChecked="{Binding IsMirror}"/>
+                  <RadioButton Content="Chu vi" 
+                            Margin=" 30 0 0 0"
+                            IsChecked="{Binding IsRound}"/>
+               </StackPanel>
+               <StackPanel Grid.Row="1"
+                           Orientation="Horizontal">
+                  <CheckBox Content="Lớp 1"
+                            IsChecked="{Binding Level1}"/>
+                  <CheckBox Content="Lớp 2"
+                            IsChecked="{Binding Level2}"/>
+                  <CheckBox Content="Lớp 3"
+                            IsChecked="{Binding Level3}"/>
+               </StackPanel>
+            </Grid>
          </GroupBox>
          <GroupBox Header="Lớp 1"
-                   Grid.Row="1">
+                   Grid.Row="1"
+                   IsEnabled="{Binding Level1}">
             <Grid>
                <Grid.RowDefinitions>
                   <RowDefinition/>
@@ -88,7 +110,7 @@
          </GroupBox>
          <GroupBox Header="Lớp 2"
                    Grid.Row="2"
-                   IsEnabled="{Binding IsMirror}">
+                   IsEnabled="{Binding Level2}">
             <Grid>
                <Grid.RowDefinitions>
                   <RowDefinition/>
@@ -114,7 +136,7 @@
          </GroupBox>
          <GroupBox Header="Lớp 3"
                    Grid.Row="3"
-                   IsEnabled="{Binding IsMirror}">
+                   IsEnabled="{Binding Level3}">
             <Grid>
                <Grid.RowDefinitions>
                   <RowDefinition/>
@@ -149,7 +171,7 @@
       <Border Grid.Column="1"
               BorderThickness="1"
               BorderBrush="DarkGray">
-         <Image Source="/DATN_Kien;component/Resources/MC.png">
+         <Image Source="/DATN_Kien;component/Resources/doixung.png">
          
          </Image>
       </Border>

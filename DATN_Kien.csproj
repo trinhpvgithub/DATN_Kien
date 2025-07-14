@@ -42,6 +42,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\chuvi.png" />
+      <None Remove="Resources\doixung.png" />
       <None Remove="Resources\MC.png" />
     </ItemGroup>
 
@@ -55,6 +57,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Content Include="Resources\chuvi.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\doixung.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Resource Include="Resources\Icons\RibbonIcon16.png" />
         <Resource Include="Resources\Icons\RibbonIcon32.png" />
         <Resource Include="Resources\MC.png">
