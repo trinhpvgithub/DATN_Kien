@@ -12,7 +12,7 @@ namespace DATN_Kien.Commands
     {
         public override void Execute()
         {
-            var ViewModel = new ViewModel.RebarColumnViewModel();
+            var ViewModel = new ViewModel.RebarColumnViewModel(Document,UiDocument  ) ;
             ViewModel.Run();
 		}
     }

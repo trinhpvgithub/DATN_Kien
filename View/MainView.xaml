@@ -6,174 +6,203 @@
         xmlns:local="clr-namespace:DATN_Kien.View"
         mc:Ignorable="d"
         Title="MainView" Height="450" Width="500">
-   <Window.Resources>
-      <ResourceDictionary>
-         <Style TargetType="TextBlock">
-            <Setter Property="Width" Value="90" />
-            <Setter Property="Height" Value="auto" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="5,15,10,0" />
-            <Setter Property="TextAlignment" Value="Left" />
-         </Style>
-         <Style TargetType="ComboBox">
-            <Setter Property="Height" Value="auto" />
-            <Setter Property="Width" Value="50" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-         </Style>
-         <Style TargetType="TextBox">
-            <Setter Property="Width" Value="80" />
-            <Setter Property="Height" Value="auto" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="5,0,10,0" />
-            <Setter Property="TextAlignment" Value="Left" />
-         </Style>
-         <Style TargetType="Button">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Padding" Value="0 0 0 1"/>
-            <Setter Property="Foreground" Value="Black"/>
-         </Style>
-         <Style TargetType="CheckBox">
-            <Setter Property="Margin" Value="5 5 5 0"/>
-            <Setter Property="Height" Value="25"/>
-         </Style>
-      </ResourceDictionary>
-   </Window.Resources>
-   <Grid>
-      <Grid.ColumnDefinitions>
-         <ColumnDefinition Width="*"/>
-         <ColumnDefinition Width="1.5*"/>
-      </Grid.ColumnDefinitions>
-      <Grid>
-         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-         </Grid.RowDefinitions>
-         <GroupBox Header="Kiểu rải">
-            <Grid>
-               <Grid.RowDefinitions>
-                  <RowDefinition/>
-                  <RowDefinition/>
-               </Grid.RowDefinitions>
-               <StackPanel Orientation="Horizontal"
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock">
+                <Setter Property="Width" Value="90" />
+                <Setter Property="Height" Value="auto" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Margin" Value="5,15,10,0" />
+                <Setter Property="TextAlignment" Value="Left" />
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Height" Value="auto" />
+                <Setter Property="Width" Value="50" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="80" />
+                <Setter Property="Height" Value="auto" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Margin" Value="5,0,10,0" />
+                <Setter Property="TextAlignment" Value="Left" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Width" Value="80"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Padding" Value="0 0 0 1"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+            <Style TargetType="CheckBox">
+                <Setter Property="Margin" Value="5 5 5 0"/>
+                <Setter Property="Height" Value="25"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Chọn Cột">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Mark"/>
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding ColumnMarks}"
+                              SelectedItem="{Binding SelectedColumnMark}"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Kiểu rải" 
+                   Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal"
                            Margin="5">
-                  <RadioButton Content="Đối xứng"
+                        <RadioButton Content="Đối xứng"
                             IsChecked="{Binding IsMirror}"/>
-                  <RadioButton Content="Chu vi" 
+                        <RadioButton Content="Chu vi" 
                             Margin=" 30 0 0 0"
                             IsChecked="{Binding IsRound}"/>
-               </StackPanel>
-               <StackPanel Grid.Row="1"
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
                            Orientation="Horizontal">
-                  <CheckBox Content="Lớp 1"
+                        <CheckBox Content="Lớp 1"
                             IsChecked="{Binding Level1}"/>
-                  <CheckBox Content="Lớp 2"
+                        <CheckBox Content="Lớp 2"
                             IsChecked="{Binding Level2}"/>
-                  <CheckBox Content="Lớp 3"
+                        <CheckBox Content="Lớp 3"
                             IsChecked="{Binding Level3}"/>
-               </StackPanel>
-            </Grid>
-         </GroupBox>
-         <GroupBox Header="Lớp 1"
-                   Grid.Row="1"
-                   IsEnabled="{Binding Level1}">
-            <Grid>
-               <Grid.RowDefinitions>
-                  <RowDefinition/>
-                  <RowDefinition/>
-               </Grid.RowDefinitions>
-               <Grid>
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="*"/>
-                     <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Text="Đường Kính"/>
-                  <ComboBox Grid.Column="1"/>
-               </Grid>
-               <Grid Grid.Row="1">
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="*"/>
-                     <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Text="Số thanh"/>
-                  <ComboBox Grid.Column="1"/>
-               </Grid>
-            </Grid>
-         </GroupBox>
-         <GroupBox Header="Lớp 2"
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Lớp 1"
                    Grid.Row="2"
-                   IsEnabled="{Binding Level2}">
-            <Grid>
-               <Grid.RowDefinitions>
-                  <RowDefinition/>
-                  <RowDefinition/>
-               </Grid.RowDefinitions>
-               <Grid>
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="*"/>
-                     <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Text="Đường Kính"/>
-                  <ComboBox Grid.Column="1"/>
-               </Grid>
-               <Grid Grid.Row="1">
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="*"/>
-                     <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Text="Số thanh"/>
-                  <ComboBox Grid.Column="1"/>
-               </Grid>
-            </Grid>
-         </GroupBox>
-         <GroupBox Header="Lớp 3"
+                   IsEnabled="{Binding Level1}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Đường Kính"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding RebarType}"
+                                  SelectedItem="{Binding Rebar1}"
+                                  DisplayMemberPath="Name"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Số thanh"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding Sothanh}"
+                                  SelectedItem="{Binding Thanh1}"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Lớp 2"
                    Grid.Row="3"
+                   IsEnabled="{Binding Level2}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Đường Kính"/>
+                        <ComboBox Grid.Column="1"                        
+                                  ItemsSource="{Binding RebarType}"
+                                  SelectedItem="{Binding Rebar2}"
+                                  DisplayMemberPath="Name"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Số thanh"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding Sothanh}"
+                                  SelectedItem="{Binding Thanh2}"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Lớp 3"
+                   Grid.Row="4"
                    IsEnabled="{Binding Level3}">
-            <Grid>
-               <Grid.RowDefinitions>
-                  <RowDefinition/>
-                  <RowDefinition/>
-               </Grid.RowDefinitions>
-               <Grid>
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="*"/>
-                     <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Text="Đường Kính"/>
-                  <ComboBox Grid.Column="1"/>
-               </Grid>
-               <Grid Grid.Row="1">
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="*"/>
-                     <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Text="Số thanh"/>
-                  <ComboBox Grid.Column="1"/>
-               </Grid>
-            </Grid>
-         </GroupBox>
-         <StackPanel Grid.Row="4"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Đường Kính"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding RebarType}"
+                                  SelectedItem="{Binding Rebar3}"
+                                  DisplayMemberPath="Name"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Số thanh"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding Sothanh}"
+                                  SelectedItem="{Binding Thanh3}"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+            <StackPanel Grid.Row="5"
                      Orientation="Horizontal"
                      HorizontalAlignment="Right">
-            <Button Content="OK" 
+                <Button Content="OK" 
                     Command="{Binding OkCommand}"/>
-            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
-         </StackPanel>
-      </Grid>
-      <Border Grid.Column="1"
+                <Button Content="Cancel" Command="{Binding CancelCommand}"/>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Column="1"
               BorderThickness="1"
               BorderBrush="DarkGray">
-         <Image Source="/DATN_Kien;component/Resources/doixung.png">
-         
-         </Image>
-      </Border>
-   </Grid>
+            <Image Source="{Binding ImagePath}">
+
+            </Image>
+        </Border>
+    </Grid>
 </Window>
