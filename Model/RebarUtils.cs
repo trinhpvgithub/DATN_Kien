@@ -15,5 +15,5 @@ namespace DATN_Kien.Model
 				RebarHookOrientation.Left, true, true);
 			return rebar;
 		}
-	}
+    }
 }

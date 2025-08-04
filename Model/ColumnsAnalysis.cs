@@ -85,5 +85,64 @@ namespace DATN_Kien.Model
 			}
 			return points;
 		}
-	}
+		public static List<List<XYZ>> GetPointRebarStirrup(this ColumnInfor column)
+		{
+			var points = new List<List<XYZ>>();
+			var ps= new List<XYZ>();
+			var cover = column.Cover;
+			var width = column.Width - cover * 2;
+			var height = column.Height - cover * 2;
+			var p1 = column.Location.Add(column.HandOrientation * -width / 2).Add(column.FacingOrientation * -height / 2);
+			var p2 = column.Location.Add(column.HandOrientation * -width / 2).Add(column.FacingOrientation * height / 2);
+			var p3 = column.Location.Add(column.HandOrientation * width / 2).Add(column.FacingOrientation * height / 2);
+			var p4 = column.Location.Add(column.HandOrientation * width / 2).Add(column.FacingOrientation * -height / 2);
+            ps.Add(p1);
+			var xVec = p4 - p1;
+			var yVec = p2 - p1;
+			ps.Add(xVec);
+			ps.Add(yVec);
+			points.Add(ps);
+			var length = column.Length;
+			var spacing = 200 / 304.8;
+			var count = (int)length / spacing;
+            for (int i = 1; i < count; i++)
+            {
+				var pps = new List<XYZ>();
+				var p = p1.EditZ(i * spacing);
+				pps.Add(p);
+				pps.Add(xVec);
+				pps.Add(yVec);
+				points.Add(pps);
+            }
+            return points;
+        }
+		private static XYZ EditZ(this XYZ point, double z)
+		{
+			return new XYZ(point.X, point.Y, z);
+        }
+		//public static List<List<XYZ>> GetPointForRebarRound(this ColumnInfor column, int quarityX,int quarityY)
+		//{
+  //          var cover = column.Cover;
+  //          var width = column.Width - cover * 2;
+  //          var height = column.Height - cover * 2;
+  //          double spacingX = width / (quarityX - 1);
+  //          double spacingY = height / (quarityY - 1);
+  //          List<XYZ> rebarPositions = new List<XYZ>();
+
+  //          for (int i = 0; i < quarityX; i++)
+  //          {
+  //              double xOffset = min.X + cover / 304.8 + i * spacingX;
+  //              rebarPositions.Add(new XYZ(xOffset, min.Y + cover / 304.8, min.Z + cover / 304.8));
+  //              rebarPositions.Add(new XYZ(xOffset, max.Y - cover / 304.8, min.Z + cover / 304.8));
+  //          }
+
+  //          for (int i = 1; i < quarityY - 1; i++)
+  //          {
+  //              double yOffset = min.Y + cover / 304.8 + i * spacingY;
+  //              rebarPositions.Add(new XYZ(min.X + cover / 304.8, yOffset, min.Z + cover / 304.8));
+  //              rebarPositions.Add(new XYZ(max.X - cover / 304.8, yOffset, min.Z + cover / 304.8));
+
+  //          }
+  //      }
+    }
 }

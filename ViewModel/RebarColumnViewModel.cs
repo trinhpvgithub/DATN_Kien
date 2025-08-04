@@ -62,7 +62,11 @@ namespace DATN_Kien.ViewModel
 		[RelayCommand]
 		private void Ok()
 		{
-			using (Transaction transaction = new Transaction(Document, "Create Rebar Column"))
+			var rebarShape = new FilteredElementCollector(Document)
+				.OfClass(typeof(RebarShape))
+				.Cast<RebarShape>()
+				.FirstOrDefault(x => x.Name.Equals("M_T1"));
+            using (Transaction transaction = new Transaction(Document, "Create Rebar Column"))
 			{
 				transaction.Start();
 				foreach (var element in Elements)
@@ -98,7 +102,16 @@ namespace DATN_Kien.ViewModel
 								}
 							}
 						}
-					}
+						var pps = column.GetPointRebarStirrup();
+                        foreach (var item in pps)
+                        {
+							var origin = item[0];
+							var xVector = item[1];
+							var yVector = item[2];
+                            Rebar stirrup = Rebar.CreateFromRebarShape(Document, rebarShape, Rebar1, column.Column, origin, xVector, yVector);
+                            stirrup.GetShapeDrivenAccessor().ScaleToBox(origin, xVector, yVector);
+                        }
+                    }
 				}
 				transaction.Commit();
 			}
@@ -134,7 +147,12 @@ namespace DATN_Kien.ViewModel
 		{
 			View = new MainView();
 			View.DataContext = this;
-			View.ShowDialog();
+            if(!ColumnMarks.Any())
+			{
+				TaskDialog.Show("Thông báo", "Không tìm thấy cột nào có Mark. Vui lòng kiểm tra lại.");
+				return;
+            }
+            View.ShowDialog();
 		}
 		protected override void OnPropertyChanged(PropertyChangedEventArgs e)
 		{
